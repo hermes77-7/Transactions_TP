@@ -1,4 +1,4 @@
-# SmallBiz Ledger - Mama Bertha’s Wholesale
+# SmallBiz Ledger
 
 ## Overview
 
