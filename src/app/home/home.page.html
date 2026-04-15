@@ -1,20 +1,75 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Mama Bertha’s Wholesale</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-text>
+    <h2>New Transaction</h2>
+  </ion-text>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-item>
+    <ion-label position="stacked">Type</ion-label>
+    <ion-input [(ngModel)]="type" placeholder="income or expense"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Amount</ion-label>
+    <ion-input
+      type="number"
+      [(ngModel)]="amount"
+      placeholder="Enter amount"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Description</ion-label>
+    <ion-input [(ngModel)]="description"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Category</ion-label>
+    <ion-input [(ngModel)]="category"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="saveTransaction()">
+    Save Transaction
+  </ion-button>
+
+  <ion-text class="ion-margin-top">
+    <h2>Export by Date Range</h2>
+  </ion-text>
+
+  <ion-item>
+    <ion-label position="stacked">Start Date</ion-label>
+    <ion-input type="date" [(ngModel)]="startDate"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">End Date</ion-label>
+    <ion-input type="date" [(ngModel)]="endDate"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" fill="outline" (click)="filterByRange()">
+    Filter Range
+  </ion-button>
+
+  <ion-button expand="block" (click)="exportFiltered()">
+    Export Excel
+  </ion-button>
+
+  <ion-text class="ion-margin-top">
+    <h2>Transactions</h2>
+  </ion-text>
+
+  <ion-list>
+    <ion-item *ngFor="let tx of transactions">
+      <ion-label>
+        <h3>{{ tx.type }} • {{ tx.amount }}</h3>
+        <p>{{ tx.description }} | {{ tx.category }}</p>
+        <p>{{ tx.date | date:'medium' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
